@@ -426,15 +426,7 @@ export const PerformerEditPanel: React.FC<IPerformerDetails> = ({
       if (!result?.data?.scrapeSinglePerformer?.length) return;
 
       // assume one result
-      // if this is a new performer, just dump the data
-      if (isNew) {
-        updatePerformerEditStateFromScraper(
-          result.data.scrapeSinglePerformer[0]
-        );
-        setScraper(undefined);
-      } else {
-        setScrapedPerformer(result.data.scrapeSinglePerformer[0]);
-      }
+      setScrapedPerformer(result.data.scrapeSinglePerformer[0]);
     } catch (e) {
       Toast.error(e);
     } finally {
@@ -451,12 +443,7 @@ export const PerformerEditPanel: React.FC<IPerformerDetails> = ({
         return;
       }
 
-      // if this is a new performer, just dump the data
-      if (isNew) {
-        updatePerformerEditStateFromScraper(result.data.scrapePerformerURL);
-      } else {
-        setScrapedPerformer(result.data.scrapePerformerURL);
-      }
+      setScrapedPerformer(result.data.scrapePerformerURL);
     } catch (e) {
       Toast.error(e);
     } finally {
@@ -473,13 +460,7 @@ export const PerformerEditPanel: React.FC<IPerformerDetails> = ({
       __typename: "ScrapedPerformer",
     };
 
-    // if this is a new performer, just dump the data
-    if (isNew) {
-      updatePerformerEditStateFromScraper(result);
-      setScraper(undefined);
-    } else {
-      setScrapedPerformer(result);
-    }
+    setScrapedPerformer(result);
   }
 
   function onScraperSelected(s: GQL.Scraper | IStashBox | undefined) {
